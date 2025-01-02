@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Account Page</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<header>
+    <h1>Account Management</h1>
+    <nav>
+        <ul>
+            <li><a href="/menu">Food Menu</a></li>
+            <li><a href="/reservations">Reservations</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section id="profile">
+        <h2>Profile Information</h2>
+        <p><strong>Name:</strong> <span th:text="${user.name}"></span></p>
+        <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+        <p><strong>Role:</strong> <span th:text="${user.role}"></span></p>
+    </section>
+
+    <section id="menu-management" th:if="${user.role == 'ADMIN' || user.role == 'STAFF'}">
+        <h2>Food Menu Management</h2>
+        <a href="/menu/add">Add Food Item</a>
+        <ul>
+            <li th:each="item : ${menuItems}">
+                <span th:text="${item.name}"></span> -
+                <span th:text="${item.availability ? 'Available' : 'Unavailable'}"></span>
+                <a th:href="@{/menu/edit/{id}(id=${item.id})}">Edit</a>
+                <a th:href="@{/menu/delete/{id}(id=${item.id})}" onclick="return confirm('Are you sure?');">Delete</a>
+            </li>
+        </ul>
+    </section>
+
+    <section id="reservations" th:if="${user.role == 'EMPLOYEE'}">
+        <h2>Daily Meal Reservation</h2>
+        <ul>
+            <li th:each="menuItem : ${menuItems}">
+                <span th:text="${menuItem.name}"></span> -
+                <span th:text="${menuItem.availability ? 'Available' : 'Unavailable'}"></span>
+                <a th:if="${menuItem.availability}" th:href="@{/reserve/{id}(id=${menuItem.id})}">Reserve</a>
+            </li>
+        </ul>
+
+        <h2>My Reservations</h2>
+        <ul>
+            <li th:each="reservation : ${reservations}">
+                <span th:text="${reservation.foodItem.name}"></span> -
+                <span th:text="${reservation.date}"></span>
+                <a th:href="@{/reservation/edit/{id}(id=${reservation.id})}">Modify</a>
+                <a th:href="@{/reservation/delete/{id}(id=${reservation.id})}"
+                   onclick="return confirm('Are you sure?');">Cancel</a>
+            </li>
+        </ul>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2024 Cafeteria Management System</p>
+</footer>
+</body>
+</html>
