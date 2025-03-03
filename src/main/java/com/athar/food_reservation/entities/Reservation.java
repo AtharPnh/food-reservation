@@ -1,9 +1,9 @@
 package com.athar.food_reservation.entities;
 
+import com.athar.food_reservation.common.BaseEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -12,14 +12,12 @@ import java.util.Set;
 
 
 @Entity
-@Data
+@Getter
+@Setter
+@SuperBuilder
 @AllArgsConstructor
-@RequiredArgsConstructor
-public class Reservation {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    private LocalDateTime reservationTime;
+@NoArgsConstructor
+public class Reservation extends BaseEntity {
     private LocalDate reservationForDate;
     @ManyToOne
     @JoinColumn(name = "user_id")

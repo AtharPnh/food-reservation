@@ -1,19 +1,17 @@
 package com.athar.food_reservation.entities;
 
+import com.athar.food_reservation.common.BaseEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Entity
-@Data
+@Getter
+@Setter
+@SuperBuilder
 @AllArgsConstructor
-@RequiredArgsConstructor
-public class NutritionalInfo {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+@NoArgsConstructor
+public class NutritionalInfo extends BaseEntity {
     private double calories;
     private double servingSize;
     private double fats;

@@ -1,23 +1,21 @@
 package com.athar.food_reservation.entities;
 
+import com.athar.food_reservation.common.BaseEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
+@SuperBuilder
 @AllArgsConstructor
-@RequiredArgsConstructor
-public class Menu {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    private LocalDateTime createdAt;
+@NoArgsConstructor
+public class Menu extends BaseEntity {
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "food_menu",
             joinColumns = @JoinColumn(name = "menu_id"),

@@ -1,22 +1,21 @@
 package com.athar.food_reservation.entities;
 
+import com.athar.food_reservation.common.BaseEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
+@SuperBuilder
 @AllArgsConstructor
-@RequiredArgsConstructor
-public class Food {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+@NoArgsConstructor
+public class Food extends BaseEntity {
     private String name;
     private FoodCategory category;
     @ManyToMany(mappedBy = "foods")
@@ -25,7 +24,6 @@ public class Food {
     @JoinColumn(name = "nutritional_info_id", referencedColumnName = "id")
     private NutritionalInfo nutritionalInfo;
     private double price;
-    private LocalDateTime createdAt;
     @ManyToMany(mappedBy = "foods")
     private Set<Menu> menus = new HashSet<>();
 
