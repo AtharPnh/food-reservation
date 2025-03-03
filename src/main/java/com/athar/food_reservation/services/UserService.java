@@ -18,6 +18,7 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         System.out.println("here");
         return userRepository.findByUsername(username)
+                .map(user -> (UserDetails) user) // Explicitly cast User to UserDetails
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
     }
