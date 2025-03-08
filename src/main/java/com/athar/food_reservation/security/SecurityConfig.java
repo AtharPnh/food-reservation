@@ -1,4 +1,4 @@
-package com.athar.food_reservation.config;
+package com.athar.food_reservation.security;
 
 import com.athar.food_reservation.jwt.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;

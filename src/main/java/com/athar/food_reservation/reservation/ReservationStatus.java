@@ -1,4 +1,4 @@
-package com.athar.food_reservation.entities;
+package com.athar.food_reservation.reservation;
 
 public enum ReservationStatus {
     PENDING(1), CONFIRMED(2), COMPLETED(3);

@@ -1,6 +1,6 @@
-package com.athar.food_reservation.repositories;
+package com.athar.food_reservation.menu;
 
-import com.athar.food_reservation.entities.Menu;
+import com.athar.food_reservation.menu.Menu;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

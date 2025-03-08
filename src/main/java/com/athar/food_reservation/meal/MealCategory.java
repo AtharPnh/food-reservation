@@ -1,4 +1,4 @@
-package com.athar.food_reservation.entities;
+package com.athar.food_reservation.meal;
 
 public enum MealCategory {
     BREAKFAST(1),LUNCH(2), DINNER(3), SNACK(4);

@@ -1,8 +1,7 @@
-package com.athar.food_reservation.repositories;
+package com.athar.food_reservation.role;
 
-import com.athar.food_reservation.entities.Role;
+import com.athar.food_reservation.role.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;

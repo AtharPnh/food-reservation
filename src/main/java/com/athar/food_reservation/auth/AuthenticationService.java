@@ -1,10 +1,10 @@
 package com.athar.food_reservation.auth;
 
-import com.athar.food_reservation.entities.Role;
-import com.athar.food_reservation.entities.User;
+import com.athar.food_reservation.role.Role;
+import com.athar.food_reservation.user.User;
 import com.athar.food_reservation.jwt.JwtUtil;
-import com.athar.food_reservation.repositories.RoleRepository;
-import com.athar.food_reservation.repositories.UserRepository;
+import com.athar.food_reservation.role.RoleRepository;
+import com.athar.food_reservation.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

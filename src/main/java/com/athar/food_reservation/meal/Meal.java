@@ -1,11 +1,13 @@
-package com.athar.food_reservation.entities;
+package com.athar.food_reservation.meal;
 
 import com.athar.food_reservation.common.BaseEntity;
+import com.athar.food_reservation.food.Food;
+import com.athar.food_reservation.menu.Menu;
+import com.athar.food_reservation.reservation.Reservation;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,4 +29,5 @@ public class Meal extends BaseEntity {
     private Set<Food> foods = new HashSet<>();
     @ManyToMany(mappedBy = "meals")
     private Set<Menu> menus = new HashSet<>();
+    private String mealImage;
 }

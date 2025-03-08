@@ -1,6 +1,5 @@
-package com.athar.food_reservation.services;
+package com.athar.food_reservation.user;
 
-import com.athar.food_reservation.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

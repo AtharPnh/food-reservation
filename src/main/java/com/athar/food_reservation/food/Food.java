@@ -1,11 +1,12 @@
-package com.athar.food_reservation.entities;
+package com.athar.food_reservation.food;
 
 import com.athar.food_reservation.common.BaseEntity;
+import com.athar.food_reservation.meal.Meal;
+import com.athar.food_reservation.menu.Menu;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,7 +25,5 @@ public class Food extends BaseEntity {
     @JoinColumn(name = "nutritional_info_id", referencedColumnName = "id")
     private NutritionalInfo nutritionalInfo;
     private double price;
-    @ManyToMany(mappedBy = "foods")
-    private Set<Menu> menus = new HashSet<>();
 
 }

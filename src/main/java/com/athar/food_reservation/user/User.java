@@ -1,10 +1,10 @@
-package com.athar.food_reservation.entities;
+package com.athar.food_reservation.user;
 
-import com.athar.food_reservation.common.BaseEntity;
+import com.athar.food_reservation.reservation.Reservation;
+import com.athar.food_reservation.role.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -57,7 +57,8 @@ public class User implements UserDetails, Principal {
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
         return this.roles.stream()
-                .map(r -> new SimpleGrantedAuthority(r.getName()))
+                .flatMap(role -> role.getAuthorities().stream())
+                .map(auth -> new SimpleGrantedAuthority(auth.getName()))
                 .collect(Collectors.toSet());
     }
 
@@ -85,6 +86,7 @@ public class User implements UserDetails, Principal {
     public String getName() {
         return this.username;
     }
+
     @Override
     public String getPassword() {
         return this.password;

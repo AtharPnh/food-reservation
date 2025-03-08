@@ -1,6 +1,7 @@
-package com.athar.food_reservation.entities;
+package com.athar.food_reservation.food;
 
 import com.athar.food_reservation.common.BaseEntity;
+import com.athar.food_reservation.food.Food;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
