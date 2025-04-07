@@ -17,7 +17,8 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Menu extends BaseEntity {
-
+    private String title;
+    private boolean isActive;
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "meal_menu",
             joinColumns = @JoinColumn(name = "menu_id"),

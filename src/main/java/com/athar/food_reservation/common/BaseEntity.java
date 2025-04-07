@@ -32,7 +32,7 @@ public class BaseEntity {
     @Column(insertable = false)
     private LocalDateTime lastModifiedAt;
     @CreatedBy
-    @Column(nullable = false, updatable = false)
+    @Column(updatable = false)
     private Long createdBy;
     @LastModifiedBy
     @Column(insertable = false)

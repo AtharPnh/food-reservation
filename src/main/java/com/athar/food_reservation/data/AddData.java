@@ -1,5 +1,6 @@
 package com.athar.food_reservation.data;
 
+import com.athar.food_reservation.meal.Meal;
 import com.athar.food_reservation.role.Role;
 import com.athar.food_reservation.security.Authority;
 import com.athar.food_reservation.security.AuthorityRepository;
@@ -84,6 +85,10 @@ public class AddData implements CommandLineRunner {
                 .roles(Set.of(adminRole, staffRole))
                 .build();
         userRepository.save(bahador);
+
+        Meal meal = Meal.builder()
+                .name("Pasta")
+                .build();
 
 //        User taha = User.builder()
 //                .password(encoder.encode("1234"))
