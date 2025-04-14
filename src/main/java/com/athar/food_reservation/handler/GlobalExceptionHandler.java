@@ -1,5 +1,6 @@
 package com.athar.food_reservation.handler;
 
+import com.athar.food_reservation.execptions.InvalidDateException;
 import com.athar.food_reservation.execptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 @RestControllerAdvice
@@ -91,12 +93,27 @@ public class GlobalExceptionHandler {
                 );
     }
 
+    @ExceptionHandler(InvalidDateException.class)
+    public ResponseEntity<Object> handleInvalidDateException(InvalidDateException ex) {
+        Map<String, Object> body = Map.of(
+                "timestamp", LocalDateTime.now(),
+                "status", HttpStatus.BAD_REQUEST.value(),
+                "error", "Invalid Date",
+                "message", ex.getMessage()
+        );
+        
+        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<ExceptionResponse> handleException(ResourceNotFoundException exception) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body(ExceptionResponse.builder()
-                        .timeStamp(LocalDateTime.now())
-                        .error(exception.getMessage())
-                        .build());
+    public ResponseEntity<Object> handleResourceNotFoundException(ResourceNotFoundException ex) {
+        Map<String, Object> body = Map.of(
+                "timestamp", LocalDateTime.now(),
+                "status", HttpStatus.NOT_FOUND.value(),
+                "error", "Resource Not Found",
+                "message", ex.getMessage()
+        );
+        
+        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
 }
