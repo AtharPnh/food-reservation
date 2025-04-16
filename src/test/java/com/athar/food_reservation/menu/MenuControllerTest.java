@@ -34,9 +34,6 @@ class MenuControllerTest {
     @Mock
     private MenuService menuService;
 
-    @Mock
-    private JwtUtil jwtUtil;
-
     @InjectMocks
     private MenuController menuController;
 

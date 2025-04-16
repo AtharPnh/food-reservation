@@ -1,11 +1,13 @@
 package com.athar.food_reservation.menu;
 
 import com.athar.food_reservation.food.Food;
+import com.athar.food_reservation.food.FoodRequest;
 import com.athar.food_reservation.food.FoodResponse;
 import com.athar.food_reservation.meal.Meal;
 import com.athar.food_reservation.meal.MealResponse;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.stream.Collectors;
 
 @Service
@@ -51,6 +53,16 @@ public class Mapper {
                         .map(this::toMealResponse)
                         .collect(Collectors.toList()))
                 .name(food.getName())
+                .build();
+    }
+
+    public Food toFood(FoodRequest foodRequest) {
+        return Food.builder()
+                .price(foodRequest.price())
+                .name(foodRequest.name())
+                .category(foodRequest.category())
+                .meals(new HashSet<>(foodRequest.meals()))
+                .nutritionalInfo(foodRequest.nutritionalInfo())
                 .build();
     }
 }
